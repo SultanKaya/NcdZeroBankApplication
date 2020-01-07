@@ -1,6 +1,7 @@
 package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.LoginPage;
+import com.zerobank.pages.PayBillsPage;
 import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
@@ -11,6 +12,7 @@ import org.junit.Assert;
 
 public class LoginStepDefinitions {
     private LoginPage loginPage = new LoginPage();
+    private PayBillsPage payBillsPage = new PayBillsPage();
 
     @Given("user is on the login page")
     public void user_is_on_the_login_page() {
@@ -21,6 +23,8 @@ public class LoginStepDefinitions {
     public void user_clicks_on_button(String button) {
         if(button.equalsIgnoreCase("Sign in")){
             loginPage.signInButtonClick();
+        }else if(button.equalsIgnoreCase("Pay")){
+            payBillsPage.clickPayButton();
         }else{
             System.out.println("Invalid Button");
         }

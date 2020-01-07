@@ -16,6 +16,8 @@ public class AccountSummaryPage extends BasePage {
 
 
 
+
+
     public List<String> accountTypes(){
         return BrowserUtils.getListOfString(accountTypeElements);
     }
@@ -30,6 +32,11 @@ public class AccountSummaryPage extends BasePage {
         }
 
         return null;
+    }
+
+    public void clickAccountTypeLink(String accountType){
+        WebElement type = Driver.get().findElement(By.xpath("//a[contains(text(),'"+accountType+"')]"));
+        type.click();
     }
 
 }

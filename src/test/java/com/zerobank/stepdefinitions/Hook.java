@@ -20,6 +20,7 @@ public class Hook {
             System.out.println("Test failed");
             byte[] screenshot = ((TakesScreenshot) Driver.get()).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshot, "image/png");
+            Driver.close();
             throw new RuntimeException("Error");
         }else {
             System.out.println("Test Complete");

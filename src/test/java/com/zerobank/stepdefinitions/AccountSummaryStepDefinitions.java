@@ -1,5 +1,6 @@
 package com.zerobank.stepdefinitions;
 
+import com.zerobank.pages.AccountActivityPage;
 import com.zerobank.pages.AccountSummaryPage;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
@@ -8,6 +9,7 @@ import java.util.List;
 
 public class AccountSummaryStepDefinitions {
     private AccountSummaryPage accountSummaryPage = new AccountSummaryPage();
+    private AccountActivityPage accountActivityPage = new AccountActivityPage();
 
 
     @Then("user navigates to {string} tab")
@@ -22,7 +24,12 @@ public class AccountSummaryStepDefinitions {
 
     @Then("user verifies that {string} following table columns are displayed")
     public void userVerifiesThatCreditAccountsFollowingTableColumnsAreDisplayed(String table, List<String> expectedTableColumns) {
-        List<String> actualTableColumns=accountSummaryPage.tableColumns(table);
-        Assert.assertEquals("Table columns dont match",expectedTableColumns,actualTableColumns);
+       if(table.equalsIgnoreCase("Credit Accounts")) {
+           List<String> actualTableColumns = accountSummaryPage.tableColumns(table);
+           Assert.assertEquals("Table columns don't match", expectedTableColumns, actualTableColumns);
+       }else if (table.equalsIgnoreCase("Transaction Table")){
+           List<String> actualTableColumns = accountActivityPage.getTransactionTableHeadersList();
+           Assert.assertEquals("Table columns don't match", expectedTableColumns, actualTableColumns);
+       }
     }
 }

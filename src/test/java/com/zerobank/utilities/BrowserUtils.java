@@ -144,7 +144,8 @@ public class BrowserUtils {
         List<String> viewPerPageOptions = new ArrayList<>();
         for(WebElement each: listofWebElement){
             String value = each.getText().trim();
-            if(value.length()>0) {
+
+            if(value.length()>0 && each.isDisplayed()) {
                 viewPerPageOptions.add(each.getText());
 
             }

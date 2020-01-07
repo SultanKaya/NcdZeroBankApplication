@@ -21,7 +21,6 @@ public class Hook {
             byte[] screenshot = ((TakesScreenshot) Driver.get()).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshot, "image/png");
             Driver.close();
-            throw new RuntimeException("Error");
         }else {
             System.out.println("Test Complete");
         }
